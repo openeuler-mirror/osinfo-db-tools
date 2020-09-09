@@ -1,10 +1,10 @@
 Name: osinfo-db-tools
 Version: 1.2.0
-Release: 3
+Release: 4
 Summary: Tools to manage the osinfo database
 License: GPLv2+
 URL: http://libosinfo.org/
-Source: https://fedorahosted.org/releases/l/i/libosinfo/%{name}-%{version}.tar.gz
+Source: https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.gz
 
 BuildRequires: gcc glib2-devel intltool libarchive-devel perl-podlators
 BuildRequires: libxml2-devel >= 2.6.0
@@ -46,5 +46,8 @@ Help files for %{name}.
 %{_mandir}/man1/osinfo-db-validate.1*
 
 %changelog
+* Tue Sep 8 2020 linwei <linwei54@openeuler.org> - 1.2.0-4
+- Modify the URL of Source
+
 * Mon Aug 12 2019 openEuler Buildteam <buildteam@openeuler.org> - 1.2.0-3
 - Package init
