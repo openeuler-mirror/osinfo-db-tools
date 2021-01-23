@@ -1,11 +1,12 @@
 Name: osinfo-db-tools
-Version: 1.2.0
-Release: 4
+Version: 1.8.0
+Release: 1
 Summary: Tools to manage the osinfo database
 License: GPLv2+
 URL: http://libosinfo.org/
-Source: https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.gz
+Source: https://releases.pagure.org/libosinfo/%{name}-%{version}.tar.xz
 
+BuildRequires: meson json-glib-devel libsoup-devel python3 python3-pytest python3-requests 
 BuildRequires: gcc glib2-devel intltool libarchive-devel perl-podlators
 BuildRequires: libxml2-devel >= 2.6.0
 BuildRequires: libxslt-devel >= 1.0.0
@@ -24,11 +25,14 @@ Help files for %{name}.
 %autosetup -n %{name}-%{version} -p1
 
 %build
-%configure
-%make_build V=1
+%meson
+%meson_build
+
+%check
+%meson_test
 
 %install
-%make_install
+%meson_install
 %find_lang %{name}
 
 %files -f %{name}.lang
@@ -36,7 +40,7 @@ Help files for %{name}.
 %{_bindir}/osinfo-db-import
 %{_bindir}/osinfo-db-path
 %{_bindir}/osinfo-db-validate
-%doc AUTHORS ChangeLog NEWS README
+%doc NEWS README
 %license COPYING
 
 %files help
@@ -46,6 +50,9 @@ Help files for %{name}.
 %{_mandir}/man1/osinfo-db-validate.1*
 
 %changelog
+* Sat Jan 23 2021 zoulin <zoulin@huawei.com> - 1.8.0-1
+- update version to 1.8.0
+
 * Tue Sep 8 2020 linwei <linwei54@openeuler.org> - 1.2.0-4
 - Modify the URL of Source
 
