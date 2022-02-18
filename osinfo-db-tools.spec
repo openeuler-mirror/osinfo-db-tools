@@ -1,6 +1,6 @@
 Name: osinfo-db-tools
 Version: 1.8.0
-Release: 1
+Release: 2
 Summary: Tools to manage the osinfo database
 License: GPLv2+
 URL: http://libosinfo.org/
@@ -29,7 +29,12 @@ Help files for %{name}.
 %meson_build
 
 %check
-%meson_test
+%ifarch riscv64
+# Fix poor performance
+%meson_test --timeout-multiplier 10
+%else
+%meson_test 
+%endif
 
 %install
 %meson_install
@@ -50,6 +55,9 @@ Help files for %{name}.
 %{_mandir}/man1/osinfo-db-validate.1*
 
 %changelog
+* Sat Feb 19 2022 YukariChiba <i@0x7f.cc> - 1.8.0-2
+- Fix unit test timeout for RISC-V
+
 * Sat Jan 23 2021 zoulin <zoulin@huawei.com> - 1.8.0-1
 - update version to 1.8.0
 
